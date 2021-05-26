@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.arpaul.UdemyUserApiUser.services.UserService;
 import io.arpaul.UdemyUserApiUser.shared.UserDto;
 import io.arpaul.UdemyUserApiUser.ui.model.CreateUserRequestModel;
+import io.arpaul.UdemyUserApiUser.ui.model.CreateUserResponseModel;
 
 @RestController
 @RequestMapping("/users")
@@ -39,7 +40,9 @@ public class UsersController {
 		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		
     	UserDto userDto = mapper.map(userDetails, UserDto.class);
-    	userService.createUser(userDto);
-        return new ResponseEntity(HttpStatus.CREATED);
+    	UserDto createdUserDto = userService.createUser(userDto);
+    	
+    	CreateUserResponseModel createUserResponseModel = mapper.map(createdUserDto, CreateUserResponseModel.class);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createUserResponseModel);
     }
 }
