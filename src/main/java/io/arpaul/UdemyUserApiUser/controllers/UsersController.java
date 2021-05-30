@@ -2,6 +2,7 @@ package io.arpaul.UdemyUserApiUser.controllers;
 
 import javax.validation.Valid;
 
+import io.arpaul.UdemyUserApiUser.services.UserService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.arpaul.UdemyUserApiUser.services.UserService;
 import io.arpaul.UdemyUserApiUser.shared.UserDto;
 import io.arpaul.UdemyUserApiUser.ui.model.CreateUserRequestModel;
 import io.arpaul.UdemyUserApiUser.ui.model.CreateUserResponseModel;
@@ -34,10 +34,10 @@ public class UsersController {
         return "Working on port "+env.getProperty("local.server.port");
     }
 
-//	@PostMapping("/login")
-//	public String login() {
-//		return "Working on port "+env.getProperty("local.server.port");
-//	}
+	@PostMapping("/login")
+	public String login() {
+		return "Working on port "+env.getProperty("local.server.port");
+	}
     
     @PostMapping
     public ResponseEntity createUser(@Valid @RequestBody CreateUserRequestModel userDetails) {

@@ -31,13 +31,10 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		System.out.println("gateway.ip >> "+environment.getProperty("gateway.ip"));
-		System.out.println("server.address >> "+environment.getProperty("server.address"));
-		System.out.println("server.port >> "+environment.getProperty("server.port"));
 		http.csrf().disable();
 		http.authorizeRequests()
 //		Session 95 https://www.udemy.com/course/spring-boot-microservices-and-spring-cloud/learn/lecture/13965030#content
-//		.antMatchers("/**").hasIpAddress(environment.getProperty("server.port"))// Instead of any IP use only gateway IP
+//		.antMatchers("/**").hasIpAddress(environment.getProperty("gateway.ip"))// Instead of any IP use only gateway IP
 //		.and()
 //		.addFilter(getAuthenticationFilter());
 		.antMatchers("/users/**").permitAll()
