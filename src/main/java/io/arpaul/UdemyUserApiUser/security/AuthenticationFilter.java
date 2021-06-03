@@ -59,6 +59,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 			Authentication authResult) throws IOException, ServletException {
 		String userName = ((User) authResult.getPrincipal()).getUsername();
 		UserDto userDto = userService.getUserDetailsByEmail(userName);
+		System.out.println("token.expiration_time >> "+Long.parseLong(environment.getProperty("token.expiration_time")));
 		String token = Jwts.builder()
 						.setSubject(userDto.getUserId())
 						.setExpiration(new Date(System.currentTimeMillis() + Long.parseLong(environment.getProperty("token.expiration_time"))))
