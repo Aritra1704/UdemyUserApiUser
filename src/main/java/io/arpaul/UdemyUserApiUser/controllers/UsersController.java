@@ -34,10 +34,10 @@ public class UsersController {
         return "Working on port "+env.getProperty("local.server.port");
     }
 
-	@PostMapping("/login")
-	public String login() {
-		return "Working on port "+env.getProperty("local.server.port");
-	}
+//	@PostMapping("/login")
+//	public String login() {
+//		return "Working on port "+env.getProperty("local.server.port");
+//	}
     
     @PostMapping
     public ResponseEntity createUser(@Valid @RequestBody CreateUserRequestModel userDetails) {
