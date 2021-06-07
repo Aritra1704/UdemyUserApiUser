@@ -57,6 +57,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 	@Override
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
 			Authentication authResult) throws IOException, ServletException {
+		System.out.println("token.secret >> "+environment.getProperty("token.secret"));
 		String userName = ((User) authResult.getPrincipal()).getUsername();
 		UserDto userDto = userService.getUserDetailsByEmail(userName);
 		System.out.println("token.expiration_time >> "+Long.parseLong(environment.getProperty("token.expiration_time")));

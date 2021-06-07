@@ -2,6 +2,7 @@ package io.arpaul.UdemyUserApiUser.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -35,13 +36,17 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 //		http.httpBasic().disable();
 		http.authorizeRequests()
+		.antMatchers(HttpMethod.POST, "/users")
+        .permitAll()
+        .antMatchers("/users/status/check")
+        .permitAll()
 //		Session 95 https://www.udemy.com/course/spring-boot-microservices-and-spring-cloud/learn/lecture/13965030#content
-//		.antMatchers("/**").hasIpAddress(environment.getProperty("gateway.ip"))// Instead of any IP use only gateway IP
-//		.and()
-//		.addFilter(getAuthenticationFilter());
-		.antMatchers("/users/**").permitAll()
+		.antMatchers("/**").hasIpAddress(environment.getProperty("gateway.ip"))// Instead of any IP use only gateway IP
 		.and()
 		.addFilter(getAuthenticationFilter());
+//		.antMatchers("/users/**").permitAll()
+//		.and()
+//		.addFilter(getAuthenticationFilter());
 		
 //		disable for h2 console
 //		http.headers().frameOptions().disable();
