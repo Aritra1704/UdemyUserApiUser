@@ -31,7 +31,9 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		System.out.println("gateway.ip >> "+environment.getProperty("gateway.ip"));
 		http.csrf().disable();
+//		http.httpBasic().disable();
 		http.authorizeRequests()
 //		Session 95 https://www.udemy.com/course/spring-boot-microservices-and-spring-cloud/learn/lecture/13965030#content
 //		.antMatchers("/**").hasIpAddress(environment.getProperty("gateway.ip"))// Instead of any IP use only gateway IP
