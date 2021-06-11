@@ -36,10 +36,9 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 //		http.httpBasic().disable();
 		http.authorizeRequests()
-		.antMatchers(HttpMethod.POST, "/users")
-        .permitAll()
-        .antMatchers("/users/status/check")
-        .permitAll()
+		.antMatchers(HttpMethod.POST, "/users").permitAll()
+//        .antMatchers("/users/status/check").permitAll()
+        .antMatchers(HttpMethod.GET, "/users/**").permitAll()
 //		Session 95 https://www.udemy.com/course/spring-boot-microservices-and-spring-cloud/learn/lecture/13965030#content
 		.antMatchers("/**").hasIpAddress(environment.getProperty("gateway.ip"))// Instead of any IP use only gateway IP
 		.and()

@@ -1,6 +1,9 @@
 package io.arpaul.UdemyUserApiUser.shared;
 
 import java.io.Serializable;
+import java.util.List;
+
+import io.arpaul.UdemyUserApiUser.ui.model.AlbumResponseModel;
 
 public class UserDto implements Serializable {
 	/**
@@ -13,6 +16,8 @@ public class UserDto implements Serializable {
 	private String email;
 	private String userId;
 	private String encryptedPassword;
+	List<AlbumResponseModel> albumsList;
+	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -49,6 +54,10 @@ public class UserDto implements Serializable {
 	public void setEncryptedPassword(String encryptedPassword) {
 		this.encryptedPassword = encryptedPassword;
 	}
-	
-	
+	public List<AlbumResponseModel> getAlbumsList() {
+		return albumsList;
+	}
+	public void setAlbumsList(List<AlbumResponseModel> albumsList) {
+		this.albumsList = albumsList;
+	}
 }
