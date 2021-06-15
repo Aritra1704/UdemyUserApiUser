@@ -6,6 +6,8 @@ import java.util.UUID;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.env.Environment;
@@ -18,6 +20,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import feign.FeignException;
 import io.arpaul.UdemyUserApiUser.data.AlbumsServiceClient;
 import io.arpaul.UdemyUserApiUser.data.UserEntity;
 import io.arpaul.UdemyUserApiUser.data.UsersRepository;
@@ -32,6 +35,7 @@ public class UserServiceImpl implements UserService {
 //	RestTemplate restTemplate;
 	Environment environment;
 	AlbumsServiceClient albumsServiceClient;
+	Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	public UserServiceImpl(
@@ -95,7 +99,13 @@ public class UserServiceImpl implements UserService {
 		UserEntity userEntity = userRepository.findByUserId(userId);
 		if(userEntity == null) throw new UsernameNotFoundException("User not found");
 		UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
-		List<AlbumResponseModel> albumsList = albumsServiceClient.getAlbums(userId);
+		List<AlbumResponseModel> albumsList = null;
+		albumsList = albumsServiceClient.getAlbums(userId);
+//		try {
+//			albumsList = albumsServiceClient.getAlbums(userId);
+//		} catch (FeignException e) {
+//			logger.error(e.getLocalizedMessage());
+//		}
 		/*String albumsUrl = String.format(environment.getProperty("albums.url"), userId);
 		ResponseEntity<List<AlbumResponseModel>> albumsListResponse = restTemplate.exchange(
 				albumsUrl, 

@@ -31,3 +31,13 @@ build/
 
 ### VS Code ###
 .vscode/
+/bin/src/main/resources/application.properties
+/bin/.mvn/wrapper/maven-wrapper.jar
+/bin/.mvn/wrapper/maven-wrapper.properties
+/bin/.mvn/wrapper/MavenWrapperDownloader.class
+/bin/mvnw
+/bin/mvnw.cmd
+/bin/pom.xml
+/bin/src/main/java/io/arpaul/UdemyUserApiUser/UdemyUserApiUserApplication.class
+/bin/src/test/java/io/arpaul/UdemyUserApiUser/UdemyUserApiUserApplicationTests.class
+/bin/src/main/java/io/arpaul/UdemyUserApiUser/controllers/UsersController.class

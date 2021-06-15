@@ -2,6 +2,7 @@ package io.arpaul.UdemyUserApiUser;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
@@ -11,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.client.RestTemplate;
 
 import feign.Logger;
+import io.arpaul.UdemyUserApiUser.shared.FeignErrorDecoder;
 
 @SpringBootApplication
 @EnableEurekaClient
@@ -36,4 +38,9 @@ public class UdemyUserApiUserApplication {
 	public Logger.Level feignLoggerLevel() {
 		return Logger.Level.FULL;
 	}
+	
+//	@Bean
+//	public FeignErrorDecoder getFeignErrorDecoder() {
+//		return new FeignErrorDecoder();
+//	}
 }
