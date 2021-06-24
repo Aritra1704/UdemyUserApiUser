@@ -100,7 +100,9 @@ public class UserServiceImpl implements UserService {
 		if(userEntity == null) throw new UsernameNotFoundException("User not found");
 		UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
 		List<AlbumResponseModel> albumsList = null;
+		logger.info("Before caling albums microservice");
 		albumsList = albumsServiceClient.getAlbums(userId);
+		logger.info("After caling albums microservice");
 //		try {
 //			albumsList = albumsServiceClient.getAlbums(userId);
 //		} catch (FeignException e) {
